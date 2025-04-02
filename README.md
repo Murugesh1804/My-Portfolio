@@ -3,7 +3,7 @@
 Welcome to my portfolio repository! This repository showcases my web development projects, skills, and experiences.
 
 ## 🔗 Live Portfolio
-You can view my portfolio live at: [My Portfolio](https://murugesh-60030271834.development.catalystserverless.in/app/index.html)
+You can view my portfolio live at: [My Portfolio](https://murugesh.vercel.app/)
 
 ## 📌 About Me
 I am a detail-oriented Web Developer with hands-on experience in building responsive, user-friendly web applications. My expertise spans across full-stack development, focusing on creating intuitive user interfaces and RESTful API integrations.
