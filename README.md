@@ -67,7 +67,7 @@ I am a detail-oriented Web Developer with hands-on experience in building respon
 
 ## 📫 Contact
 - 📧 Email: dhanamurugesh1804@gmail.com
-- 🌍 LinkedIn: [LinkedIn Profile](#)
+- 🌍 LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/murugesh-s/)
 - 📞 Phone: 9345544982
 
 Feel free to explore the repository and check out my work. Contributions, feedback, and collaborations are always welcome!
