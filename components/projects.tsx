@@ -1,11 +1,11 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink } from "lucide-react"
+import { ExternalLink, Github, Trophy, Brain, Zap, Mail, Database, Globe, Code, Smartphone } from "lucide-react"
 
 export default function Projects() {
   const ref = useRef(null)
@@ -14,7 +14,6 @@ export default function Projects() {
     amount: 0.1,
     margin: "0px 0px -200px 0px",
   })
-  const [activeTab, setActiveTab] = useState("all")
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,148 +36,210 @@ export default function Projects() {
 
   const projects = [
     {
-      id: 1,
-      title: "MediPlus",
-      description:
-        "Hospital Management Platform with responsive front-end interfaces using React.js and Material-UI. Implemented blockchain technology for secure data storage and sharing.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: "full-stack",
-      technologies: ["React.js", "Material-UI", "Node.js", "MongoDB", "Blockchain"],
-      github: "https://github.com",
-      demo: "https://demo.com",
+      title: "PredictIt – Crop Yield Prediction Platform",
+      description: "A machine learning-powered platform that predicts crop yields with 98% accuracy using Random Forest algorithms. Built during SIMATS Hackathon 2024 where it secured 1st place among 50+ teams.",
+      features: [
+        "Machine Learning model with 98% accuracy",
+        "Responsive frontend design in Figma",
+        "Crop yield prediction for multiple crops",
+        "User-friendly interface for farmers",
+        "Data-driven insights and recommendations"
+      ],
+      tech: ["HTML", "CSS", "Flask", "Python", "Machine Learning", "Random Forest"],
+      image: "/placeholder.jpg",
+      github: "https://github.com/Murugesh1804/predictit",
+      live: null,
+      achievement: "🥇 1st Place - SIMATS Hackathon 2024",
+      category: "AI/ML",
+      icon: <Brain className="h-8 w-8 text-green-500" />
     },
     {
-      id: 2,
-      title: "ResqAI",
-      description:
-        "Emergency Companion with interactive UI for emergency resource access. Integrated multiple third-party APIs for real-time weather and disaster data.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: "frontend",
-      technologies: ["React.js", "Tailwind CSS", "API Integration", "Data Visualization"],
-      github: "https://github.com",
-      demo: "https://demo.com",
+      title: "ResqAI – Emergency Response Dashboard",
+      description: "A real-time disaster management system that integrates weather APIs and disaster databases to provide emergency services information with interactive charts, maps, and geolocation features.",
+      features: [
+        "Real-time disaster management system",
+        "Weather API integration",
+        "Interactive charts and maps",
+        "Geolocation for emergency services",
+        "Disaster database integration"
+      ],
+      tech: ["React.js", "Chart.js", "REST APIs", "Weather API", "Geolocation"],
+      image: "/placeholder.jpg",
+      github: "https://github.com/Murugesh1804/resqai",
+      live: null,
+      achievement: null,
+      category: "Web App",
+      icon: <Globe className="h-8 w-8 text-blue-500" />
     },
     {
-      id: 3,
-      title: "Travel Date Picker",
-      description:
-        "Responsive travel date picker UI using Backpack React Library. Implemented pixel-perfect designs following company design system.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: "frontend",
-      technologies: ["React.js", "Backpack UI", "WCAG Guidelines"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-    },
-    {
-      id: 4,
-      title: "E-Commerce API",
-      description:
-        "RESTful API for e-commerce platform with authentication, product management, and order processing endpoints.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: "backend",
-      technologies: ["Node.js", "Express.js", "MongoDB", "JWT Authentication"],
-      github: "https://github.com",
-      demo: "https://demo.com",
-    },
+      title: "Smart Email Automation System",
+      description: "An intelligent email automation system that categorizes placement emails and sends WhatsApp alerts via Twilio. Uses LLaMA-70B API to summarize long emails and prevent missed deadlines.",
+      features: [
+        "Automated email categorization",
+        "WhatsApp alerts via Twilio",
+        "LLaMA-70B API integration",
+        "Email summarization",
+        "Deadline tracking and alerts"
+      ],
+      tech: ["n8n", "Gmail API", "Google Sheets", "Twilio", "LLaMA-70B", "Automation"],
+      image: "/placeholder.jpg",
+      github: "https://github.com/Murugesh1804/n8n-email-automation",
+      live: null,
+      achievement: null,
+      category: "Automation",
+      icon: <Zap className="h-8 w-8 text-yellow-500" />
+    }
   ]
 
-  const filteredProjects = activeTab === "all" ? projects : projects.filter((project) => project.category === activeTab)
-
-  const tabs = [
-    { id: "all", label: "All" },
-    { id: "frontend", label: "Frontend" },
-    { id: "backend", label: "Backend" },
-    { id: "full-stack", label: "Full Stack" },
-  ]
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "AI/ML":
+        return "bg-green-500/20 text-green-500 border-green-500/30"
+      case "Web App":
+        return "bg-blue-500/20 text-blue-500 border-blue-500/30"
+      case "Automation":
+        return "bg-yellow-500/20 text-yellow-500 border-yellow-500/30"
+      default:
+        return "bg-primary/20 text-primary border-primary/30"
+    }
+  }
 
   return (
-    <section id="projects" className="section-padding py-20">
+    <section id="projects" className="section-padding bg-muted/30 py-20">
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="text-center mb-12"
+        className="text-center mb-16"
       >
-        <motion.h2 variants={itemVariants} className="text-3xl font-bold font-heading mb-2">
-          My <span className="text-gradient">Projects</span>
+        <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold font-heading mb-4">
+          Featured <span className="text-gradient">Projects</span>
         </motion.h2>
-        <motion.div variants={itemVariants} className="w-20 h-1 bg-primary rounded-full mx-auto mb-6"></motion.div>
-        <motion.p variants={itemVariants} className="text-muted-foreground max-w-2xl mx-auto">
-          A collection of my recent work showcasing my skills and experience in web development.
+        <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-primary to-purple-400 rounded-full mx-auto mb-6"></motion.div>
+        <motion.p variants={itemVariants} className="text-muted-foreground max-w-3xl mx-auto text-lg">
+          Here are some of my key projects that showcase my skills in full-stack development, 
+          machine learning, and automation. Each project represents a unique challenge and learning opportunity.
         </motion.p>
       </motion.div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="flex justify-center mb-10"
-      >
-        <div className="flex flex-wrap justify-center gap-2">
-          {tabs.map((tab) => (
-            <motion.button
-              key={tab.id}
-              variants={itemVariants}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeTab === tab.id ? "bg-primary text-white" : "bg-secondary text-muted-foreground hover:text-white"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </motion.button>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="grid grid-cols-1 md:grid-cols-2 gap-8"
-      >
-        {filteredProjects.map((project) => (
-          <motion.div key={project.id} variants={itemVariants} className="group" whileHover={{ y: -5 }}>
-            <Card className="overflow-hidden border-none bg-secondary/50 h-full">
-              <div className="relative overflow-hidden aspect-video">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  width={600}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4 w-full">
-                    <div className="flex justify-end space-x-2">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Button size="icon" variant="secondary" className="rounded-full">
-                          <Github className="h-4 w-4" />
-                        </Button>
-                      </a>
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <Button size="icon" variant="secondary" className="rounded-full">
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </a>
+      <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            className="group"
+          >
+            <Card className="hover-effect bg-secondary/50 border-none backdrop-blur-sm h-full">
+              <CardHeader className="pb-4">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    {project.icon}
+                    <div>
+                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <Badge className={`mt-2 ${getCategoryColor(project.category)}`}>
+                        {project.category}
+                      </Badge>
                     </div>
                   </div>
+                  {project.achievement && (
+                    <Badge className="bg-yellow-500/20 text-yellow-500 border-yellow-500/30">
+                      <Trophy className="h-3 w-3 mr-1" />
+                      {project.achievement}
+                    </Badge>
+                  )}
                 </div>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
-                      {tech}
-                    </span>
-                  ))}
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+              </CardHeader>
+              
+              <CardContent className="pt-0">
+                {/* Features */}
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-3 text-sm text-primary uppercase tracking-wide">
+                    Key Features
+                  </h4>
+                  <ul className="space-y-2">
+                    {project.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="text-primary mt-1">•</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Tech Stack */}
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-3 text-sm text-primary uppercase tracking-wide">
+                    Technologies Used
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <Badge key={techIndex} variant="outline" className="text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex-1 group-hover:border-primary group-hover:text-primary transition-colors"
+                    onClick={() => window.open(project.github, '_blank')}
+                  >
+                    <Github className="h-4 w-4 mr-2" />
+                    View Code
+                  </Button>
+                  
+                  {project.live && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 group-hover:border-primary group-hover:text-primary transition-colors"
+                      onClick={() => window.open(project.live, '_blank')}
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Live Demo
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
           </motion.div>
         ))}
+      </div>
+
+      {/* Call to Action */}
+      <motion.div
+        variants={itemVariants}
+        className="text-center mt-16"
+      >
+        <Card className="bg-gradient-to-r from-primary/10 to-purple-500/10 border-primary/20 max-w-2xl mx-auto">
+          <CardContent className="p-8">
+            <h3 className="text-2xl font-bold mb-4">Interested in Collaborating?</h3>
+            <p className="text-muted-foreground mb-6">
+              I&apos;m always open to discussing new opportunities, interesting projects, 
+              and innovative ideas. Let&apos;s create something amazing together!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button className="lightning-button">
+                <Mail className="mr-2 h-4 w-4" />
+                Get In Touch
+              </Button>
+              <Button variant="outline" onClick={() => window.open('https://github.com/Murugesh1804', '_blank')}>
+                <Github className="mr-2 h-4 w-4" />
+                View More on GitHub
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </motion.div>
     </section>
   )

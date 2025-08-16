@@ -39,6 +39,9 @@ export default function Particles({
     vx: number
     vy: number
     color: string
+    opacity: number
+    pulsePhase: number
+    connectionDistance: number
 
     constructor(x: number, y: number, size: number, color: string) {
       this.x = x
@@ -49,6 +52,9 @@ export default function Particles({
       this.vx = 0
       this.vy = 0
       this.color = color
+      this.opacity = Math.random() * 0.5 + 0.3
+      this.pulsePhase = Math.random() * Math.PI * 2
+      this.connectionDistance = Math.random() * 100 + 50
     }
 
     update() {
@@ -57,7 +63,7 @@ export default function Particles({
       const distance = Math.sqrt(dx * dx + dy * dy)
       const forceDirectionX = dx / distance
       const forceDirectionY = dy / distance
-      const maxDistance = 100
+      const maxDistance = 120
       const force = (maxDistance - distance) / maxDistance
       const directionX = forceDirectionX * force * staticity
       const directionY = forceDirectionY * force * staticity
@@ -76,16 +82,67 @@ export default function Particles({
         }
       }
 
-      this.x += this.vx
-      this.y += this.vy
+      // Add subtle floating movement
+      this.pulsePhase += 0.02
+      const floatX = Math.sin(this.pulsePhase) * 0.5
+      const floatY = Math.cos(this.pulsePhase * 0.7) * 0.5
+
+      this.x += this.vx + floatX
+      this.y += this.vy + floatY
+
+      // Damping
+      this.vx *= 0.95
+      this.vy *= 0.95
     }
 
     draw() {
       if (!context.current) return
+      
+      // Create gradient for each particle
+      const gradient = context.current.createRadialGradient(
+        this.x, this.y, 0,
+        this.x, this.y, this.size
+      )
+      
+      const baseColor = this.color
+      const alpha = this.opacity * (0.8 + 0.2 * Math.sin(this.pulsePhase))
+      
+      gradient.addColorStop(0, baseColor.replace('0.3', alpha.toString()))
+      gradient.addColorStop(1, baseColor.replace('0.3', '0'))
+      
       context.current.beginPath()
       context.current.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-      context.current.fillStyle = this.color
+      context.current.fillStyle = gradient
       context.current.fill()
+    }
+  }
+
+  const drawConnections = () => {
+    if (!context.current) return
+
+    context.current.strokeStyle = theme === "dark" 
+      ? "rgba(147, 51, 234, 0.1)" 
+      : "rgba(147, 51, 234, 0.05)"
+    context.current.lineWidth = 1
+
+    for (let i = 0; i < particles.current.length; i++) {
+      for (let j = i + 1; j < particles.current.length; j++) {
+        const dx = particles.current[i].x - particles.current[j].x
+        const dy = particles.current[i].y - particles.current[j].y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < 100) {
+          const opacity = (100 - distance) / 100
+          context.current.strokeStyle = theme === "dark"
+            ? `rgba(147, 51, 234, ${opacity * 0.1})`
+            : `rgba(147, 51, 234, ${opacity * 0.05})`
+          
+          context.current.beginPath()
+          context.current.moveTo(particles.current[i].x, particles.current[i].y)
+          context.current.lineTo(particles.current[j].x, particles.current[j].y)
+          context.current.stroke()
+        }
+      }
     }
   }
 
@@ -103,23 +160,49 @@ export default function Particles({
     canvasRef.current.width = containerWidth
     canvasRef.current.height = containerHeight
 
-    const particleColor = theme === "dark" ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)"
+    // Enhanced color scheme based on theme
+    const particleColors = theme === "dark" 
+      ? [
+          "rgba(147, 51, 234, 0.3)", // Purple
+          "rgba(59, 130, 246, 0.3)", // Blue
+          "rgba(16, 185, 129, 0.3)", // Green
+          "rgba(245, 158, 11, 0.3)", // Yellow
+          "rgba(239, 68, 68, 0.3)",  // Red
+          "rgba(168, 85, 247, 0.3)", // Violet
+          "rgba(236, 72, 153, 0.3)", // Pink
+        ]
+      : [
+          "rgba(147, 51, 234, 0.2)", // Purple
+          "rgba(59, 130, 246, 0.2)", // Blue
+          "rgba(16, 185, 129, 0.2)", // Green
+          "rgba(245, 158, 11, 0.2)", // Yellow
+          "rgba(239, 68, 68, 0.2)",  // Red
+          "rgba(168, 85, 247, 0.2)", // Violet
+          "rgba(236, 72, 153, 0.2)", // Pink
+        ]
 
     particles.current = []
 
     for (let i = 0; i < quantity; i++) {
-      const size = Math.random() * 2 + 1
+      const size = Math.random() * 3 + 1
       const x = Math.random() * containerWidth
       const y = Math.random() * containerHeight
-      particles.current.push(new Particle(x, y, size, particleColor))
+      const color = particleColors[Math.floor(Math.random() * particleColors.length)]
+      particles.current.push(new Particle(x, y, size, color))
     }
   }
 
   const animate = () => {
     if (!context.current || !canvasRef.current) return
 
-    context.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+    // Clear with fade effect
+    context.current.fillStyle = 'rgba(0, 0, 0, 0.05)'
+    context.current.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height)
 
+    // Draw connections first
+    drawConnections()
+
+    // Then draw particles
     particles.current.forEach((particle) => {
       particle.update()
       particle.draw()
@@ -138,7 +221,7 @@ export default function Particles({
 
     setTimeout(() => {
       mouseIsMoving.current = false
-    }, 100)
+    }, 150)
   }
 
   useEffect(() => {
