@@ -298,28 +298,60 @@ nav {
 /* ─── SERVICES ─── */
 #services { background: var(--surface); }
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: flex;
   margin-top: 52px;
+  padding: 60px 48px 100px;
+  margin-left: -48px;
+  margin-right: -48px;
+  overflow-x: auto;
+  overflow-y: visible;
+  gap: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  cursor: grab;
 }
+
+.services-grid::-webkit-scrollbar { display: none; }
+
 .service-card {
+  flex: 0 0 380px;
+  margin-left: -140px;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  background: var(--cream);
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  border-radius: 24px;
+  padding: 40px;
+  background: var(--surface);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
+  z-index: 1;
+  box-shadow: -15px 0 45px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
 }
+
+.service-card:first-child {
+  margin-left: 0;
+}
+
+.service-card:nth-child(odd) { transform: rotate(-1deg); }
+.service-card:nth-child(even) { transform: rotate(1.5deg); }
+
 .service-card:hover {
+  transform: translateY(-32px) rotate(0deg) scale(1.05);
+  margin-right: 140px;
+  z-index: 20;
   border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(200,75,47,0.08);
+  box-shadow: 0 30px 60px rgba(200,75,47,0.12);
+}
+
+.service-card:hover ~ .service-card {
+  transform: translateX(40px);
 }
 .service-card.featured {
   background: var(--ink);
   border-color: var(--ink);
   color: #fff;
+  z-index: 5; /* Keep featured card slightly above others by default */
 }
 .service-card.featured .service-card-icon { background: rgba(255,255,255,0.1); }
 .service-card.featured .service-card-title { color: #fff; }
@@ -883,7 +915,21 @@ footer {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
-  .services-grid { grid-template-columns: 1fr; }
+  .services-grid { 
+    flex-direction: column; 
+    padding: 0;
+    gap: 16px;
+    overflow: visible;
+  }
+  .service-card {
+    flex: auto;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+  .service-card:hover {
+    transform: translateY(-5px) !important;
+  }
   .work-grid { grid-template-columns: 1fr; }
   .work-card.large { grid-column: 1; display: block; }
   .process-grid { grid-template-columns: repeat(2, 1fr); }

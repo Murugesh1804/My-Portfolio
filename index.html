@@ -1,445 +1,1030 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Murugesh S — Web Developer & Landing Page Specialist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/style.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Murugesh S. — Web Developer & Landing Page Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FBF8F2;
+      --cream-warm: #F5F0E8;
+      --ink: #151210;
+      --ink-mid: #3D3830;
+      --ink-soft: #7A7268;
+      --rust: #C94B2F;
+      --rust-light: #F5E9E5;
+      --rust-hover: #A83820;
+      --border: #E4DDD3;
+      --white: #FFFFFF;
+    }
+
+    html { background: var(--cream); }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(251,248,242,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 20px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: var(--ink); text-decoration: none; letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--rust); }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a {
+      color: var(--ink-soft); font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--ink); color: #fff;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+      padding: 10px 22px; border-radius: 100px;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--rust); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 48px 80px;
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--rust-light); color: var(--rust);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 7px 14px; border-radius: 100px;
+      margin-bottom: 32px;
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px;
+      background: var(--rust); border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(52px, 6vw, 88px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--rust);
+    }
+    .hero-sub {
+      font-size: 17px; line-height: 1.7;
+      color: var(--ink-soft); max-width: 500px;
+      margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--rust); color: #fff;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.02em;
+      padding: 16px 32px; border-radius: 14px;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-primary:hover { background: var(--rust-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,75,47,0.3); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--ink);
+      font-size: 14px; font-weight: 600;
+      padding: 16px 28px; border-radius: 14px;
+      border: 1.5px solid var(--border);
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--ink); background: var(--white); }
+
+    .hero-aside { display: flex; flex-direction: column; gap: 24px; }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 32px;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px; color: var(--rust); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+    .tags-card {
+      background: var(--cream-warm);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px 28px;
+    }
+    .tags-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 12px; font-weight: 600;
+      color: var(--ink-mid);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 5px 12px; border-radius: 100px;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      overflow: hidden;
+      background: var(--ink);
+      padding: 18px 0;
+      border-top: 1px solid #2a2520;
+      border-bottom: 1px solid #2a2520;
+    }
+    .marquee-track {
+      display: flex; gap: 0; animation: marquee 22s linear infinite; white-space: nowrap;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 24px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); padding: 0 32px;
+    }
+    .marquee-item span { color: var(--rust); font-size: 16px; }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 120px 48px;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--rust);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(38px, 4.5vw, 64px);
+      letter-spacing: -1.5px; line-height: 1.05;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .section-sub { font-size: 17px; color: var(--ink-soft); max-width: 480px; line-height: 1.6; }
+
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 64px; gap: 32px;
+    }
+    .price-note { text-align: right; }
+    .price-note p:first-child { font-size: 11px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .price-note p:last-child { font-size: 22px; font-weight: 700; color: var(--ink); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(3, 200px);
+      gap: 20px;
+    }
+
+    .svc-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 36px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.35s cubic-bezier(0.2,0,0,1);
+      overflow: hidden; position: relative;
+    }
+    .svc-card:hover {
+      border-color: var(--rust);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    .svc-card.featured {
+      grid-column: span 7; grid-row: span 2;
+      background: var(--ink); color: #fff; border-color: var(--ink);
+    }
+    .svc-card.featured:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,0.2); }
+    .svc-card.c2 { grid-column: span 5; }
+    .svc-card.c3 { grid-column: span 5; }
+    .svc-card.c4 { grid-column: span 7; flex-direction: row; align-items: center; }
+    .svc-card.c5 { grid-column: span 5; }
+
+    .svc-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--rust); margin-bottom: 20px; }
+    .svc-card.featured .svc-num { color: rgba(255,255,255,0.4); }
+    .svc-title { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 12px; }
+    .svc-card.featured .svc-title { font-size: 38px; color: #fff; }
+    .svc-desc { font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+    .svc-card.featured .svc-desc { color: rgba(255,255,255,0.55); max-width: 380px; font-size: 16px; }
+    .svc-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .svc-tag { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; }
+    .svc-icon { font-size: 40px; margin-left: 32px; opacity: 0.25; }
+
+    /* ── WORK ── */
+    .work {
+      padding: 120px 48px;
+      background: var(--cream-warm);
+    }
+    .work-inner { max-width: 1280px; margin: 0 auto; }
+    .work-header { margin-bottom: 72px; }
+
+    .project-featured {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 72px; align-items: center;
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-img {
+      border-radius: 24px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+    }
+    .proj-img img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.7s; }
+    .proj-img:hover img { transform: scale(1.04); }
+    .proj-cats {
+      display: flex; gap: 10px; margin-bottom: 20px;
+    }
+    .proj-cat {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--rust); background: var(--rust-light);
+      padding: 4px 10px; border-radius: 6px;
+    }
+    .proj-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 52px; letter-spacing: -1.5px;
+      color: var(--ink); margin-bottom: 20px; line-height: 1;
+    }
+    .proj-desc { font-size: 16px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 36px; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--ink); font-weight: 700; font-size: 14px;
+      text-decoration: none; border-bottom: 2px solid var(--ink);
+      padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+    }
+    .proj-link:hover { color: var(--rust); border-color: var(--rust); }
+    .proj-stack { font-size: 13px; color: var(--ink-soft); font-weight: 500; margin-left: 24px; }
+
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .proj-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .proj-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+    .proj-card-img { overflow: hidden; }
+    .proj-card-img img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; transition: transform 0.6s; }
+    .proj-card:hover .proj-card-img img { transform: scale(1.05); }
+    .proj-card-placeholder {
+      aspect-ratio: 16/9;
+      background: var(--cream-warm);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    }
+    .proj-card-placeholder svg { width: 48px; height: 48px; color: var(--rust); opacity: 0.5; }
+    .proj-card-body { padding: 28px 32px; }
+    .proj-card-meta { display: flex; justify-content: space-between; align-items: flex-start; }
+    .proj-card-title { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .proj-card-sub { font-size: 13px; color: var(--ink-soft); }
+    .proj-year { font-size: 11px; font-weight: 700; color: var(--ink-soft); border: 1px solid var(--border); padding: 3px 10px; border-radius: 100px; letter-spacing: 0.05em; }
+
+    /* ── PROCESS ── */
+    .process {
+      padding: 120px 48px;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .process-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .process-sticky { position: sticky; top: 120px; }
+    .process-steps { display: flex; flex-direction: column; gap: 0; }
+
+    .step {
+      display: flex; gap: 32px; padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 14px; color: var(--rust);
+      width: 36px; flex-shrink: 0; padding-top: 4px;
+    }
+    .step-content h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px; letter-spacing: -0.5px;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .step-content p { font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 120px 48px;
+      background: var(--ink);
+    }
+    .about-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .about .section-eyebrow { color: var(--rust); }
+    .about .section-title { color: #fff; }
+    .about .section-title em { font-style: italic; color: var(--rust); }
+    .about-body p {
+      font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+    .about-body p strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .skills-panel {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px; padding: 44px;
+    }
+    .skills-panel h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px; color: #fff; margin-bottom: 36px; letter-spacing: -0.5px;
+    }
+    .skill-item { margin-bottom: 28px; }
+    .skill-row {
+      display: flex; justify-content: space-between;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-bottom: 8px;
+    }
+    .skill-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .skill-fill { height: 100%; background: var(--rust); border-radius: 2px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .testi-inner { max-width: 1280px; margin: 0 auto; }
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 44px;
+    }
+    .testi-quote { font-size: 32px; color: var(--rust); opacity: 0.3; line-height: 1; margin-bottom: 24px; font-family: Georgia, serif; }
+    .testi-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px; line-height: 1.55; letter-spacing: -0.3px;
+      color: var(--ink); margin-bottom: 32px; font-style: italic;
+    }
+    .testi-author { display: flex; flex-direction: column; gap: 4px; }
+    .testi-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+    .testi-role { font-size: 13px; color: var(--ink-soft); }
+
+    /* ── CTA ── */
+    .cta-banner {
+      padding: 120px 48px;
+      background: var(--rust);
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 6vw, 80px);
+      letter-spacing: -2px; line-height: 1.02;
+      color: #fff; margin-bottom: 44px;
+    }
+    .cta-banner h2 em { font-style: italic; color: rgba(255,255,255,0.65); }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #fff; color: var(--rust);
+      font-size: 14px; font-weight: 700; letter-spacing: 0.02em;
+      padding: 18px 36px; border-radius: 100px;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-white:hover { background: var(--ink); color: #fff; transform: scale(1.04); }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 120px 48px;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+
+    .contact-info { position: sticky; top: 120px; }
+    .contact-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      margin-bottom: 36px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: var(--rust-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 20px; height: 20px; color: var(--rust); }
+    .contact-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+    .contact-value { font-size: 16px; font-weight: 600; color: var(--ink); text-decoration: none; transition: color 0.2s; }
+    .contact-value:hover { color: var(--rust); }
+
+    .wa-highlight {
+      background: #E8F5E9;
+      border: 1.5px solid #A5D6A7;
+      border-radius: 18px; padding: 24px 28px;
+      margin-top: 36px; margin-bottom: 8px;
+    }
+    .wa-highlight-title {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 15px; color: #1B5E20; margin-bottom: 6px;
+    }
+    .wa-highlight-title svg { width: 20px; height: 20px; }
+    .wa-highlight p { font-size: 13px; color: #2E7D32; line-height: 1.5; }
+
+    .turnaround {
+      margin-top: 24px;
+      border-left: 3px solid var(--rust);
+      padding: 18px 20px;
+      background: var(--cream-warm);
+      border-radius: 0 12px 12px 0;
+    }
+    .turnaround-title { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+    .turnaround p { font-size: 13px; color: var(--ink-soft); }
+
+    /* Form */
+    .contact-form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 28px; padding: 56px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .form-group { margin-bottom: 28px; }
+    .form-group label {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 10px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; color: var(--ink);
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--rust);
+      box-shadow: 0 0 0 3px rgba(201,75,47,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--ink-soft); opacity: 0.6; }
+
+    .wa-submit {
+      width: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: #25D366; color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.02em;
+      padding: 18px 32px; border-radius: 14px;
+      border: none; cursor: pointer;
+      transition: all 0.25s;
+    }
+    .wa-submit:hover { background: #1ebe5b; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(37,211,102,0.35); }
+    .wa-submit svg { width: 22px; height: 22px; }
+    .form-note { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 14px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 60px 48px;
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: #fff; letter-spacing: -0.5px;
+    }
+    .footer-logo span { color: var(--rust); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { color: rgba(255,255,255,0.4); font-size: 14px; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+      .hero-aside { display: none; }
+      nav .nav-inner { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .services { padding: 80px 24px; }
+      .services-grid { grid-template-rows: auto; }
+      .svc-card.featured { grid-column: span 12; grid-row: span 1; }
+      .svc-card.c2,.svc-card.c3,.svc-card.c5 { grid-column: span 12; }
+      .svc-card.c4 { grid-column: span 12; }
+      .work { padding: 80px 24px; }
+      .project-featured { grid-template-columns: 1fr; gap: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .process { padding: 80px 24px; }
+      .process-layout { grid-template-columns: 1fr; gap: 48px; }
+      .process-sticky { position: static; }
+      .about { padding: 80px 24px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .testimonials { padding: 80px 24px; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .contact { padding: 80px 24px; }
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+      .contact-info { position: static; }
+      .contact-form { padding: 36px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+      .hero h1 { font-size: 48px; }
+      .proj-title { font-size: 36px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <h1 class="nav-logo"><a href="#">murugesh<span>.</span>dev</a></h1>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact" class="nav-cta">Start a Project →</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="home">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Available for freelance projects</div>
-      <h1>I build websites<br/>that win you <em>clients</em></h1>
-      <p class="hero-sub">
-        Full-stack developer specialising in high-converting landing pages, business websites and web apps for founders &amp; small businesses across India and beyond.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Get a free quote →</a>
-        <a href="#work" class="btn-secondary">See my work</a>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="#">murugesh<span>.</span>dev</a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
       </div>
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">12+</div>
-          <div class="hero-stat-label">Projects delivered</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">48hr</div>
-          <div class="hero-stat-label">Avg. response time</div>
-        </div>
-      </div>
+      <a class="nav-cta" href="#contact">Start a Project</a>
     </div>
+  </nav>
 
-    <div class="hero-card">
-      <div class="hero-card-title">What I can build for you</div>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
       <div>
-        <span class="service-pill active">Landing Pages</span>
-        <span class="service-pill blue">Business Websites</span>
-        <span class="service-pill green">Web Applications</span>
-        <span class="service-pill gold">AI-Integrated Tools</span>
-        <span class="service-pill active">Dashboards</span>
-        <span class="service-pill blue">E-commerce</span>
+        <div class="hero-badge">Available for freelance projects</div>
+        <h1>I help businesses get <em>3–5× more leads</em> from their website.</h1>
+        <p class="hero-sub">Full-stack developer specialising in high-converting landing pages, business websites and web apps for founders across India and beyond.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">
+            Get a free quote
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn-secondary" href="#work">See my work</a>
+        </div>
       </div>
-      <div class="hero-card-divider"></div>
-      <div class="trust-logos" style="margin-top:16px">
-        <span class="trust-label">Worked with:</span>
-        <span class="trust-logo">Techobite</span>
-        <span class="trust-logo">Global Info Tech</span>
-        <span class="trust-logo">Web2Smith</span>
+      <div class="hero-aside">
+        <div class="stat-card">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Projects successfully delivered globally</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">48hr</div>
+          <div class="stat-label">Guaranteed initial response time</div>
+        </div>
+        <div class="tags-card">
+          <div class="tags-label">Core Competencies</div>
+          <div class="tags">
+            <span class="tag">Landing Pages</span>
+            <span class="tag">Business Websites</span>
+            <span class="tag">Web Apps</span>
+            <span class="tag">Automations</span>
+          </div>
+        </div>
       </div>
-      <div class="response-badge">
-        <span>Fast delivery — most landing pages ready in <strong>5–7 days</strong></span>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<div class="divider"></div>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section">
-    <div class="section-eyebrow">Services</div>
-    <h2 class="section-title">What I offer</h2>
-    <p class="section-sub">Clear, focused offerings — no bloat, no guessing. You know exactly what you're getting.</p>
-
-    <div class="services-grid">
-      <!-- Card 1 -->
-      <div class="service-card">
-        <div class="service-badge">Most popular</div>
-        <h3 class="service-card-title">Landing Page</h3>
-        <p class="service-card-desc">A single high-converting page designed to turn visitors into leads or customers.</p>
-        <ul class="service-items">
-          <li class="service-item">Custom design (no templates)</li>
-          <li class="service-item">Mobile-first, fast-loading</li>
-          <li class="service-item">Contact form + WhatsApp CTA</li>
-          <li class="service-item">SEO-ready HTML structure</li>
-          <li class="service-item">Delivered in 5–7 days</li>
-        </ul>
-      </div>
-
-      <!-- Card 2 (Featured) -->
-      <div class="service-card featured">
-        <div class="service-badge">Best value</div>
-        <h3 class="service-card-title">Business Website</h3>
-        <p class="service-card-desc">A full multi-page website that establishes your brand and drives real inquiries.</p>
-        <ul class="service-items">
-          <li class="service-item">Up to 6 pages (Home, About, Services, Portfolio, Blog, Contact)</li>
-          <li class="service-item">Custom design &amp; branding</li>
-          <li class="service-item">Admin panel / CMS</li>
-          <li class="service-item">Email notifications</li>
-          <li class="service-item">1 month free support</li>
-        </ul>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="service-card">
-        <h3 class="service-card-title">Web Application</h3>
-        <p class="service-card-desc">Custom-built tools, dashboards, or portals that automate your business workflows.</p>
-        <ul class="service-items">
-          <li class="service-item">Full MERN stack development</li>
-          <li class="service-item">User auth &amp; roles</li>
-          <li class="service-item">API integrations (Payment, WhatsApp, etc.)</li>
-          <li class="service-item">Database design</li>
-          <li class="service-item">Scalable architecture</li>
-        </ul>
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <div class="marquee-item">Landing Pages <span>✦</span></div>
+        <div class="marquee-item">Business Websites <span>✦</span></div>
+        <div class="marquee-item">Web Applications <span>✦</span></div>
+        <div class="marquee-item">Automation Systems <span>✦</span></div>
+        <div class="marquee-item">Next.js <span>✦</span></div>
+        <div class="marquee-item">Node.js <span>✦</span></div>
+        <div class="marquee-item">n8n Workflows <span>✦</span></div>
+        <div class="marquee-item">Student Projects <span>✦</span></div>
+        <div class="marquee-item">Landing Pages <span>✦</span></div>
+        <div class="marquee-item">Business Websites <span>✦</span></div>
+        <div class="marquee-item">Web Applications <span>✦</span></div>
+        <div class="marquee-item">Automation Systems <span>✦</span></div>
+        <div class="marquee-item">Next.js <span>✦</span></div>
+        <div class="marquee-item">Node.js <span>✦</span></div>
+        <div class="marquee-item">n8n Workflows <span>✦</span></div>
+        <div class="marquee-item">Student Projects <span>✦</span></div>
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:48px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px">
-      <div style="font-size:14px;color:var(--ink-muted);margin-bottom:8px">Starting from</div>
-      <div style="font-family:var(--serif);font-size:42px;color:var(--ink);letter-spacing:-0.02em">₹5,999</div>
-      <p style="font-size:14px;color:var(--ink-muted);margin-top:12px">Pricing varies based on project scope and requirements</p>
-      <a href="#contact" class="btn-primary" style="margin-top:20px">Get a custom quote →</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- WORK -->
-<section id="work">
-  <div class="section">
-    <div class="section-eyebrow">Work</div>
-    <h2 class="section-title">Recent <em>projects</em></h2>
-    <p class="section-sub">A selection of websites, apps and tools I've built — each solving a real business problem.</p>
-
-    <div class="work-grid">
-
-      <!-- Featured Large Card -->
-      <div class="work-card large" style="--aspect-ratio: 180/132">
-        <div class="work-thumb">
-          <div class="work-thumb-inner">
-            <img src="biz.png" width="100%" height="auto" alt="BizMind" />
-          </div>
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="services-header reveal">
+        <div>
+          <div class="section-eyebrow">What I build</div>
+          <h2 class="section-title">Systems that convert,<br>automate & scale.</h2>
+          <p class="section-sub">Not just websites — digital infrastructure that does the selling for you.</p>
         </div>
-        <div class="work-info">
-          <span class="work-tag tag-red">AI / Full-Stack</span>
-          <h3 class="work-title">BizMind — Market Intelligence Platform</h3>
-          <p class="work-desc">An AI-powered hyperlocal market intelligence platform for Indian SMBs. Aggregates competitor data, customer sentiment and local market trends into an actionable dashboard.</p>
-          <div class="work-tech">
-            <span class="tech-tag">Next.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">MongoDB</span><span class="tech-tag">LLaMA-70B</span><span class="tech-tag">n8n</span>
-          </div>
-          <a href="https://bizmind.tech" class="work-link">View live →</a>
+        <div class="price-note">
+          <p>Projects</p>
+          <p>Starts from ₹5,999</p>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="work-card" style="--aspect-ratio: 180/90">
-        <div class="work-thumb">
-          <div class="work-thumb-inner" style="width:88%;height:82%">
-            <img src="acq.png" width="100%" height="auto" alt="Acquiescent Redesigned" />
+      <div class="services-grid reveal">
+        <div class="svc-card featured">
+          <div>
+            <div class="svc-num">01</div>
+            <h3 class="svc-title">High-Converting<br>Landing Pages</h3>
+            <p class="svc-desc">Designed with psychology + performance. Every section crafted to turn visitors into qualified leads — not just pretty pixels.</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">UI/UX</span>
+            <span class="svc-tag">Copywriting</span>
+            <span class="svc-tag">Speed Optimization</span>
           </div>
         </div>
-        <div class="work-info">
-          <span class="work-tag tag-green">Redesign</span>
-          <h3 class="work-title">Acquiescent — Website Redesign</h3>
-          <p class="work-desc">Redesigned Acquiescent.in, a software consulting firm. Improved user experience and increased engagement.</p>
-          <div class="work-tech">
-            <span class="tech-tag">HTML/CSS</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Gulp</span>
+
+        <div class="svc-card c2">
+          <div>
+            <div class="svc-num">02</div>
+            <h3 class="svc-title">Business Websites</h3>
+            <p class="svc-desc">Multi-page sites built for trust, SEO and brand authority.</p>
           </div>
-          <a href="https://acquiescent.in" class="work-link">View live →</a>
+        </div>
+
+        <div class="svc-card c3">
+          <div>
+            <div class="svc-num">03</div>
+            <h3 class="svc-title">Web Applications</h3>
+            <p class="svc-desc">SaaS platforms, dashboards and scalable systems.</p>
+          </div>
+        </div>
+
+        <div class="svc-card c4">
+          <div>
+            <div class="svc-num">04</div>
+            <h3 class="svc-title">Automation Systems</h3>
+            <p class="svc-desc">Save hours daily using smart workflows with n8n & APIs.</p>
+          </div>
+          <div class="svc-icon">⚡</div>
+        </div>
+
+        <div class="svc-card c5">
+          <div>
+            <div class="svc-num">05</div>
+            <h3 class="svc-title">Student Projects</h3>
+            <p class="svc-desc">Real-world full-stack & ML projects with guidance.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Card 3 -->
-      <div class="work-card" style="--aspect-ratio: 180/180">
-        <div class="work-thumb">
-          <div class="work-thumb-inner">
-            <div class="mock-browser">
-              <div class="mock-browser-bar">
-                <div class="mock-dot mock-dot-red"></div>
-                <div class="mock-dot mock-dot-yellow"></div>
-                <div class="mock-dot mock-dot-green"></div>
-                <div class="mock-url"></div>
+    <!-- WORK -->
+    <section class="work" id="work">
+      <div class="work-inner">
+        <div class="work-header reveal">
+          <div class="section-eyebrow">Selected Projects</div>
+          <h2 class="section-title">Where strategy meets<br><em style="font-style:italic;color:var(--rust)">technical craft.</em></h2>
+        </div>
+
+        <div class="project-featured reveal">
+          <div class="proj-img">
+            <img src="biz.png" alt="BizMind Dashboard" />
+          </div>
+          <div>
+            <div class="proj-cats">
+              <span class="proj-cat">AI Integration</span>
+              <span class="proj-cat">Full-Stack</span>
+            </div>
+            <h3 class="proj-title">BizMind</h3>
+            <p class="proj-desc">An AI-powered hyperlocal market intelligence platform for SMBs. Aggregates competitor data and trends into an actionable dashboard.</p>
+            <div style="display:flex;align-items:center;gap:0;">
+              <a class="proj-link" href="https://bizmind.tech" target="_blank">
+                View Live
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="proj-stack">Next.js / Node.js / MongoDB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects-grid reveal">
+          <div class="proj-card">
+            <div class="proj-card-img">
+              <img src="acq.png" alt="Acquiescent Project" />
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-card-meta">
+                <div>
+                  <div class="proj-card-title">Acquiescent</div>
+                  <div class="proj-card-sub">Complete Brand Redesign & Architecture</div>
+                </div>
+                <span class="proj-year">2024</span>
               </div>
-              <div class="mock-content">
-                <div style="display:flex;align-items:center;gap:8px;padding:6px 0">
-                  <div style="width:24px;height:24px;border-radius:50%;background:var(--accent-light)"></div>
-                  <div class="mock-line" style="width:100px"></div>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-card-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-card-meta">
+                <div>
+                  <div class="proj-card-title">Workflow Automation</div>
+                  <div class="proj-card-sub">AI-driven lead categorization — n8n / Gmail API / Twilio</div>
                 </div>
-                <div style="background:var(--surface-alt);border-radius:6px;padding:10px;margin-top:4px">
-                  <div class="mock-line" style="margin-bottom:5px"></div>
-                  <div class="mock-line short"></div>
-                </div>
-                <div style="background:var(--blue-light);border-radius:6px;padding:10px;margin-top:8px">
-                  <div class="mock-line" style="background:rgba(27,79,138,0.25);margin-bottom:5px"></div>
-                  <div class="mock-line xs" style="background:rgba(27,79,138,0.2)"></div>
-                </div>
-                <div style="text-align:right;margin-top:8px">
-                  <div style="display:inline-block;background:var(--accent);border-radius:5px;height:20px;width:60px"></div>
-                </div>
+                <span class="proj-year">2024</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="work-info">
-          <span class="work-tag tag-blue">Automation</span>
-          <h3 class="work-title">Smart Email Automation System</h3>
-          <p class="work-desc">Auto-categorises placement emails, summarises long threads using LLaMA-70B and sends WhatsApp alerts via Twilio — zero missed deadlines.</p>
-          <div class="work-tech">
-            <span class="tech-tag">n8n</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Twilio</span><span class="tech-tag">LLaMA-70B</span>
-          </div>
-          <a href="https://github.com/Murugesh1804" class="work-link">View on GitHub →</a>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+      <div class="process-layout">
+        <div class="process-sticky reveal">
+          <div class="section-eyebrow">How I work</div>
+          <h2 class="section-title">A clear roadmap,<br>zero surprises.</h2>
+          <p class="section-sub" style="margin-top:16px;">A structured approach designed to achieve your specific business goals — on time, on budget.</p>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROCESS -->
-<section id="process">
-  <div class="section">
-    <div class="section-eyebrow">How I work</div>
-    <h2 class="section-title">Simple, transparent <em>process</em></h2>
-    <p class="section-sub">No surprises, no scope creep. Just a clear path from idea to live website.</p>
-
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="process-num">01</div>
-        <div class="process-step-title">Discovery Call</div>
-        <p class="process-step-desc">Free 30-min call to understand your business, goals and what success looks like for your project.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-num">02</div>
-        <div class="process-step-title">Proposal & Quote</div>
-        <p class="process-step-desc">A clear written proposal with timeline, deliverables and a fixed price — no surprises.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-num">03</div>
-        <div class="process-step-title">Design & Build</div>
-        <p class="process-step-desc">I design and develop your site, sharing progress at key milestones. You review and give feedback.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-num">04</div>
-        <div class="process-step-title">Launch & Support</div>
-        <p class="process-step-desc">I handle deployment, domain setup and provide 1 month of post-launch support for bug fixes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section">
-    <div class="section-eyebrow">Testimonials</div>
-    <h2 class="section-title">What clients say</h2>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"Murugesh built our company website in under a week. Clean design, fast performance and he explained everything clearly. Highly recommend for any startup."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">MO</div>
-          <div>
-            <div class="testimonial-name">Murali Obineni</div>
-            <div class="testimonial-role">Founder, Acquiescents</div>
+        <div class="process-steps reveal">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <h4>Discovery Call</h4>
+              <p>Free 30-min call to understand your business, goals and project success metrics. No sales pitch — just listening.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <h4>Proposal</h4>
+              <p>A clear written roadmap with timeline, deliverables and fixed pricing. No hidden costs, ever.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <h4>Design & Build</h4>
+              <p>Regular updates as we move from wireframes to a fully functional, high-performance site you'll love.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <h4>Launch & Support</h4>
+              <p>Full deployment, domain setup and 1 month of dedicated post-launch support included.</p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"He took our rough idea and turned it into a polished, professional web application. The code is clean, well-documented and easy to maintain."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">SO</div>
-          <div>
-            <div class="testimonial-name">Sohail</div>
-            <div class="testimonial-role">Founder, Techobite</div>
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div class="reveal">
+          <div class="section-eyebrow">About Me</div>
+          <h2 class="section-title" style="margin-bottom:32px;">Developer who thinks like a <em>business owner.</em></h2>
+          <div class="about-body">
+            <p>I'm <strong>Murugesh</strong> — a full-stack developer and final-year IT student at SRMIST who cares about one thing: building websites that actually work for your business.</p>
+            <p>Through internships at <strong>Techobite</strong> and <strong>Global Info Technologies</strong> and running my own freelance company <strong>Web2Smith</strong>, I've learned that code alone doesn't win clients — strategic design does.</p>
+            <p>I specialise in building bridges between complex backend logic and elegant user interfaces, ensuring every pixel serves a purpose.</p>
+          </div>
+        </div>
+        <div class="skills-panel reveal">
+          <h3>Technical Mastery</h3>
+          <div class="skill-item">
+            <div class="skill-row"><span>React / Next.js</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Tailwind CSS</span><span>92%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Node.js</span><span>88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>MongoDB</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>n8n Automations</span><span>72%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<div class="divider"></div>
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <div class="testi-inner">
+        <div style="margin-bottom:56px;" class="reveal">
+          <div class="section-eyebrow">Client Words</div>
+          <h2 class="section-title">What they say.</h2>
+        </div>
+        <div class="testi-grid reveal">
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p class="testi-text">Murugesh built our company website in under a week. Clean design, fast performance and he explained everything clearly.</p>
+            <div class="testi-author">
+              <span class="testi-name">Murali Obineni</span>
+              <span class="testi-role">Founder, Acquiescents</span>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p class="testi-text">He took our rough idea and turned it into a polished, professional web application. The code is clean and easy to maintain.</p>
+            <div class="testi-author">
+              <span class="testi-name">Sohail</span>
+              <span class="testi-role">Founder, Techobite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section">
-    <div class="about-grid">
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+      <h2>Let's build something<br>that <em>converts.</em></h2>
+      <a class="btn-white" href="#contact">
+        Start Your Project
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="contact-layout">
+        <div class="contact-info reveal">
+          <div class="section-eyebrow">Get in Touch</div>
+          <h2 class="section-title" style="margin-bottom:12px;">Let's talk<br>about your<br>project.</h2>
+          <p class="section-sub" style="margin-bottom:48px;">Available for freelance projects and high-impact collaborations.</p>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Email</div>
+              <a class="contact-value" href="mailto:dhanamurugesh1804@gmail.com">dhanamurugesh1804@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.477 2 11.99c0 2.096.611 4.049 1.664 5.688L2.048 22l4.43-1.59A9.95 9.95 0 0011.99 22C17.523 22 22 17.523 22 11.99 22 6.477 17.523 2 11.99 2zm0 18a7.944 7.944 0 01-4.328-1.278l-.31-.185-3.218 1.155 1.068-3.168-.201-.325A7.954 7.954 0 014.036 12c0-4.389 3.572-7.962 7.955-7.962S19.946 7.611 19.946 12c0 4.389-3.572 7.962-7.956 7.962l-.001.038z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <a class="contact-value" href="https://wa.me/919345544982" target="_blank">+91 93455 44982</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Location</div>
+              <span class="contact-value">Chennai, Tamil Nadu, India</span>
+            </div>
+          </div>
+
+          <div class="wa-highlight">
+            <div class="wa-highlight-title">
+              <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.477 2 11.99c0 2.096.611 4.049 1.664 5.688L2.048 22l4.43-1.59A9.95 9.95 0 0011.99 22C17.523 22 22 17.523 22 11.99 22 6.477 17.523 2 11.99 2zm0 18a7.944 7.944 0 01-4.328-1.278l-.31-.185-3.218 1.155 1.068-3.168-.201-.325A7.954 7.954 0 014.036 12c0-4.389 3.572-7.962 7.955-7.962S19.946 7.611 19.946 12c0 4.389-3.572 7.962-7.956 7.962l-.001.038z"/></svg>
+              Prefer to chat? WhatsApp me directly.
+            </div>
+            <p>Fill the form below and hit Send — it opens WhatsApp with your details pre-filled so I can reply instantly.</p>
+          </div>
+
+          <div class="turnaround">
+            <div class="turnaround-title">⚡ Fast turnaround</div>
+            <p>Landing pages ready in 5–7 days. Business sites in 2–3 weeks.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="f-name" placeholder="John Doe" />
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="f-email" placeholder="john@example.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Service Type</label>
+              <select id="f-service">
+                <option value="Landing Page">Landing Page</option>
+                <option value="Business Website">Business Website</option>
+                <option value="Web Application">Web Application</option>
+                <option value="Automations">Automations</option>
+                <option value="Student Project">Student Project</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Project Message</label>
+              <textarea id="f-message" placeholder="Briefly describe your project goals..."></textarea>
+            </div>
+            <button class="wa-submit" onclick="sendToWhatsApp()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.476 2 2 6.477 2 11.99c0 2.096.611 4.049 1.664 5.688L2.048 22l4.43-1.59A9.95 9.95 0 0011.99 22C17.523 22 22 17.523 22 11.99 22 6.477 17.523 2 11.99 2zm0 18a7.944 7.944 0 01-4.328-1.278l-.31-.185-3.218 1.155 1.068-3.168-.201-.325A7.954 7.954 0 014.036 12c0-4.389 3.572-7.962 7.955-7.962S19.946 7.611 19.946 12c0 4.389-3.572 7.962-7.956 7.962l-.001.038z"/></svg>
+              Send via WhatsApp
+            </button>
+            <p class="form-note">Your details open a pre-filled WhatsApp message — no typing needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
       <div>
-        <div class="section-eyebrow">About</div>
-        <h2 class="section-title" style="font-size:clamp(28px,3.5vw,42px)">Developer who thinks like a <em>business owner</em></h2>
-
-        <div class="about-badge-row" style="margin-top:24px">
-          <div class="about-badge">Chennai, India</div>
-          <div class="about-badge">SRMIST — IT</div>
-        </div>
-
-        <p class="about-text">I'm Murugesh — a full-stack developer and final-year IT student at SRMIST who cares about one thing: building websites that actually work for your business.</p>
-
-        <p class="about-text">Through internships at Techobite and Global Info Technologies and running my own freelance company <strong>Web2Smith</strong>, I've learned that great code alone doesn't win clients — strategic design does.</p>
-
-        <div class="about-highlight">
-          "I don't just hand you a website. I help you think through what your visitors need to see, feel and do — then build it precisely."
-        </div>
-
+        <div class="footer-logo">murugesh<span>.</span>dev</div>
+        <p class="footer-copy" style="margin-top:8px;">© 2026 Murugesh S. All rights reserved.</p>
       </div>
-
-      <div class="skills-panel">
-        <div class="skills-header">Technical Skills</div>
-        <div class="skill-row">
-          <span class="skill-name">React / Next.js</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
-          <span class="skill-label">Expert</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">Node.js / Express</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
-          <span class="skill-label">Expert</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">MongoDB / SQL</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill blue" style="width:80%"></div></div>
-          <span class="skill-label">Advanced</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">Tailwind CSS</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div>
-          <span class="skill-label">Expert</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">Python / ML</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill green" style="width:78%"></div></div>
-          <span class="skill-label">Advanced</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">REST API Design</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill blue" style="width:85%"></div></div>
-          <span class="skill-label">Expert</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">n8n Automation</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
-          <span class="skill-label">Intermediate</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-name">UI/UX — Figma</span>
-          <div class="skill-bar-track"><div class="skill-bar-fill green" style="width:70%"></div></div>
-          <span class="skill-label">Intermediate</span>
-        </div>
+      <div class="footer-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- CTA BANNER -->
-<div class="section" style="padding-top:0;padding-bottom:0">
-  <div class="cta-banner">
-    <div class="cta-banner-left">
-      <div class="cta-eyebrow">Ready to grow your business?</div>
-      <h2 class="cta-title">Let's build something<br/>that <em>converts</em></h2>
-      <p class="cta-sub">Whether you need a landing page, a full website, or a custom web app — I'd love to hear about your project.</p>
-    </div>
-    <div class="cta-right">
-      <a href="#contact" class="btn-white">Start a project →</a>
-      <a href="mailto:dhanamurugesh1804@gmail.com" class="btn-outline-white">Email me directly</a>
-      <div class="cta-trust">Free consultation · No obligation · Fixed pricing</p>
-    </div>
-  </div>
-</div>
+  <script>
+    // WhatsApp redirect
+    function sendToWhatsApp() {
+      const name = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const service = document.getElementById('f-service').value;
+      const message = document.getElementById('f-message').value.trim();
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section">
-    <div class="section-eyebrow">Contact</div>
-    <h2 class="section-title">Start a <em>project</em></h2>
-    <p class="section-sub">Tell me about your project and I'll get back to you within 24 hours with a free quote.</p>
+      if (!name || !message) {
+        alert('Please fill in your name and project message before sending.');
+        return;
+      }
 
-    <div class="contact-grid">
-      <div>
-        <div class="contact-info-item">
-          <div>
-            <div class="contact-info-label">Email</div>
-            <div class="contact-info-value"><a href="mailto:dhanamurugesh1804@gmail.com">dhanamurugesh1804@gmail.com</a></div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div>
-            <div class="contact-info-label">WhatsApp</div>
-            <div class="contact-info-value"><a href="https://wa.me/919345544982">+91 93455 44982</a></div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div>
-            <div class="contact-info-label">Location</div>
-            <div class="contact-info-value">Chennai, Tamil Nadu, India</div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div>
-            <div class="contact-info-label">LinkedIn</div>
-            <div class="contact-info-value"><a href="https://linkedin.com/in/murugesh-s">linkedin.com/in/murugesh-s</a></div>
-          </div>
-        </div>
+      const text =
+        `Hi Murugesh! 👋 I'd like to discuss a project.\n\n` +
+        `*Name:* ${name}\n` +
+        `*Email:* ${email || 'Not provided'}\n` +
+        `*Service:* ${service}\n` +
+        `*Message:* ${message}`;
 
-        <div style="background:var(--gold-light);border-radius:12px;padding:20px 22px;margin-top:8px;border:1px solid #E8D8A8">
-          <div style="font-size:13px;font-weight:500;color:var(--gold);margin-bottom:6px">Fast turnaround</div>
-          <div style="font-size:13px;color:var(--ink-muted);line-height:1.65">Landing pages: <strong>5–7 days</strong><br/>Business websites: <strong>2–3 weeks</strong><br/>Web apps: <strong>4–8 weeks</strong></div>
-        </div>
-      </div>
+      const encoded = encodeURIComponent(text);
+      window.open(`https://wa.me/919345544982?text=${encoded}`, '_blank');
+    }
 
-      <div class="whatsapp-chat-box" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center">
-        <div style="font-size:48px;margin-bottom:16px">💬</div>
-        <h3 style="font-family:var(--serif);font-size:24px;margin-bottom:12px">Chat on WhatsApp</h3>
-        <p style="color:var(--ink-muted);font-size:14px;margin-bottom:24px">Prefer to chat? Message me directly on WhatsApp for quick responses.</p>
-        <a href="https://wa.me/919345544982?text=Hi%20Murugesh,%20I'm%20interested%20in%20discussing%20a%20project%20with%20you." class="btn-primary" style="display:inline-flex;align-items:center;gap:8px">
-          <span>Start WhatsApp Chat</span>
-          <span>→</span>
-        </a>
-        <p style="color:var(--ink-muted);font-size:12px;margin-top:16px">Usually replies within 48 hours</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-
-<script src="js/main.js"></script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
